@@ -33,7 +33,7 @@ class IconButton extends Component {
     const { onClick, animationStyle } = this.props;
 
     this.setState({ iconAnimationStyle: zoomInAnimationStyle.zoomIn });
-console.log(animationStyle);
+
     if (animationStyle) {
       this.setState({ animationStyle });
       // Delay for animation
