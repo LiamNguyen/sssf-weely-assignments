@@ -5,6 +5,8 @@ import './style.css';
 import ImageTile from '../common/ImageTile';
 import ImageModal from '../common/ImageModal';
 import FetchHelper from '../../lib/FetchHelper';
+import WeekOnePresenter from '../../presenters/WeekOnePresenter';
+import ToolBox from '../common/ToolBox';
 
 class WeekOne extends Component {
   constructor(props) {
@@ -13,14 +15,19 @@ class WeekOne extends Component {
     this.state = {
       shouldModalShow: false,
       modalProps: {},
-      images: []
+      images: [],
+      filteredImages: [],
+      categoryList: []
     };
   }
 
   componentWillMount() {
     FetchHelper.fetchWeekOneImages()
       .then(imageFile => {
-        this.setState({ images: imageFile.content });
+        this.setState({
+          images: imageFile.content,
+          categoryList: WeekOnePresenter.getCategories(imageFile.content)
+        });
       });
   }
 
@@ -36,16 +43,33 @@ class WeekOne extends Component {
     this.setState({ shouldModalShow: false });
   };
 
+  handleChangeCategory = e => {
+    const selectedCategory = e.target.value;
+    if (selectedCategory === 'all') {
+      this.setState({ filteredImages: [] });
+    }
+    const { images } = this.state;
+    const filteredImages = images.filter(image => image.category === selectedCategory);
+    this.setState({ filteredImages });
+  };
+
   render() {
     const {
       images,
+      filteredImages,
       modalProps: { title = '', url: imageUrl = '' }
     } = this.state;
+
+    const imagesToDisplay = _.isEmpty(filteredImages) ? images : filteredImages;
 
     return (
       <div>
         <div className="week-one">
-          {images.map(image =>
+          <ToolBox
+            categories={this.state.categoryList}
+            onCategoryChange={this.handleChangeCategory}
+          />
+          {imagesToDisplay.map(image =>
             (<ImageTile
               key={image.id}
               id={image.id}
