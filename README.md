@@ -6,5 +6,5 @@
 ## Run
 
 After cloning GIT repo, run: 
- - `yarn install`
+ - `yarn`
  - `yarn start`
