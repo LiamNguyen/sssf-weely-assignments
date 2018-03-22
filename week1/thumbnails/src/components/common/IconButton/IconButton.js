@@ -58,8 +58,9 @@ console.log(animationStyle);
       <button
         className="icon-button"
         style={{ ...style, ...this.state.animationStyle }}
+        onClick={this.handleOnClick}
       >
-        <StyleRoot onClick={this.handleOnClick}>
+        <StyleRoot>
           <img
             src={iconSrc}
             width="30px"
