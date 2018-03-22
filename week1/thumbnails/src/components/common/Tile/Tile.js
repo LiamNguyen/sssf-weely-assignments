@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { string } from 'prop-types';
+import { string, object } from 'prop-types';
 
 import './style.css';
 import history from '../../../history';
@@ -28,7 +28,7 @@ class Tile extends Component {
         onClick={this.handleOnClick}
         onMouseEnter={this.handleMouseEnter}
         onMouseLeave={this.handleMouseLeave}
-        style={{ backgroundImage: `url('${imageUrl}')` }}
+        style={{ backgroundImage: `url('${imageUrl}')`, ...this.props.style }}
       >
         <p>{title}</p>
       </div>
@@ -39,7 +39,8 @@ class Tile extends Component {
 Tile.propTypes = {
   title: string,
   link: string,
-  imageUrl: string
+  imageUrl: string,
+  style: object
 };
 
 export default Tile;

@@ -1,0 +1,7 @@
+.week-one {
+    margin: 0 auto 0 auto;
+    display: flex;
+    justify-content: space-between;
+    flex-flow: row wrap;
+    max-width: 1200px;
+}

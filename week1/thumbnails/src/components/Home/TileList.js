@@ -1,5 +1,5 @@
 import RoutePathConstants from '../../constants/RoutePathConstants';
-import JsLogo from '../../assets/images/javascript_logo.png';
+import ES6Logo from '../../assets/images/es6_logo.png';
 
 const {
   weekOne,
@@ -12,7 +12,10 @@ export default [
   {
     title: 'Week 1',
     link: `/${weekOne}`,
-    imageUrl: JsLogo
+    imageUrl: ES6Logo,
+    customStyle: {
+      backgroundColor: '#fdcf27'
+    }
   },
   {
     title: 'Week 2',

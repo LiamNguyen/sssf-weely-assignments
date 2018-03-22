@@ -1,0 +1,29 @@
+.image-tile {
+    margin: 20px;
+    width: 300px;
+    height: 550px;
+    box-shadow: grey 0 0 10px 0;
+    border-radius: 2px;
+    position: relative;
+}
+
+.image-tile-header img {
+    margin-bottom: 15px;
+}
+
+.image-tile-body {
+    padding: 10px;
+}
+
+.image-tile-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.image-tile-footer button {
+    flex: 0.5;
+}

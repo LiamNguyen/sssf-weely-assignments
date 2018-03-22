@@ -1,0 +1,12 @@
+.image-modal .modal-body img {
+    width: 100%;
+}
+
+.image-modal .modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.image-modal .modal-footer button {
+    flex: 0.2
+}

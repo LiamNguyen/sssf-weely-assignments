@@ -14,6 +14,7 @@ class Home extends Component {
             title={tile.title}
             link={tile.link}
             imageUrl={tile.imageUrl}
+            style={tile.customStyle}
           />
         ))}
       </div>
