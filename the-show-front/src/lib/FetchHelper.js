@@ -1,9 +1,9 @@
 import ExternalUrl from '../constants/ExternalUrl';
 
-const { weekOneImages } = ExternalUrl;
+const { images } = ExternalUrl;
 
 export default {
   fetchWeekOneImages() {
-    return fetch(weekOneImages).then(response => response.json());
+    return fetch(images).then(response => response.json());
   }
 }

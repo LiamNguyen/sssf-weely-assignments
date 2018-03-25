@@ -3,16 +3,17 @@ import { Router, Route } from 'react-router-dom';
 
 import logo from '../assets/images/logo.svg';
 import '../assets/stylesheets/index.css';
-import WeekOne from './WeekOne';
+import HomePage from './HomePage';
+import AddImagePage from './AddImagePage';
 import history from '../history';
 import RoutePathConstants from '../constants/RoutePathConstants';
 
-const { weekOne } = RoutePathConstants;
+const { home, addImage } = RoutePathConstants;
 
 class App extends Component {
   componentWillMount() {
     if (history.location.pathname === '/') {
-      history.push(`/${weekOne}`);
+      history.push(`/${home}`);
     }
   }
 
@@ -24,7 +25,8 @@ class App extends Component {
             <img src={logo} className="App-logo" alt="logo" />
             <h1 className="App-title">Welcome to React</h1>
           </header>
-          <Route exact path={`/${weekOne}`} component={WeekOne} />
+          <Route exact path={`/${home}`} component={HomePage} />
+          <Route exact path={`/${addImage}`} component={AddImagePage} />
         </div>
       </Router>
     );
