@@ -3,8 +3,6 @@ import { func } from 'prop-types';
 import IconButton from 'material-ui/IconButton';
 import ArrowBack from 'material-ui/svg-icons/navigation/arrow-back';
 
-import './style.css';
-
 const BackButton = ({ onClick }) => (
   <IconButton onClick={onClick}>
     <ArrowBack className="arrow-back-icon" />
@@ -12,7 +10,7 @@ const BackButton = ({ onClick }) => (
 );
 
 BackButton.propTypes = {
-  onClick: func
+  onClick: func.isRequired
 };
 
 export default BackButton;

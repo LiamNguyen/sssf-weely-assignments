@@ -6,3 +6,7 @@
     flex-flow: row wrap;
     max-width: 1200px;
 }
+
+.home .toolbox {
+    flex-basis: 100%;
+}

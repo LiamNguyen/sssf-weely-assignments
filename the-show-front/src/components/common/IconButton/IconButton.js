@@ -32,6 +32,8 @@ class IconButton extends Component {
   handleOnClick = () => {
     const { onClick, animationStyle } = this.props;
 
+    if (!onClick) return;
+
     this.setState({ iconAnimationStyle: zoomInAnimationStyle.zoomIn });
 
     if (animationStyle) {
@@ -52,10 +54,11 @@ class IconButton extends Component {
   };
 
   render() {
-    const { style, iconSrc } = this.props;
+    const { type, style, iconSrc } = this.props;
 
     return (
       <button
+        type={type}
         className="icon-button"
         style={{ ...style, ...this.state.animationStyle }}
         onClick={this.handleOnClick}
@@ -74,12 +77,15 @@ class IconButton extends Component {
 }
 
 IconButton.defaultProps = {
+  type: 'button',
   style: {},
-  animationStyle: null
+  animationStyle: null,
+  onClick: null
 };
 
 IconButton.propTypes = {
-  onClick: func.isRequired,
+  type: string,
+  onClick: func,
   style: object,
   iconSrc: string.isRequired,
   animationStyle: object

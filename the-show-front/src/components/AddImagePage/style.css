@@ -1,0 +1,49 @@
+.add-image-page {
+    padding: 10px;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.add-image-page form {
+    margin: 10px;
+    flex: 0.4;
+    padding: 10px;
+    -webkit-box-shadow: grey 0 0 10px 0;
+    -moz-box-shadow: grey 0 0 10px 0;
+    box-shadow: grey 0 0 10px 0;
+    border-radius: 8px;
+}
+
+.add-image-page form .button-container {
+    width: 100%;
+    display: flex;
+    padding: 20px;
+    justify-content: flex-end;
+}
+
+.add-image-page form .button-container button {
+    flex: 0.2;
+}
+
+.add-image-page form .preview-image {
+    margin-top: 20px;
+    width: 100%;
+ }
+
+.add-image-page .map-container {
+    margin: 10px;
+    flex: 0.4;
+    height: 400px;
+}
+
+.add-image-page .back-button-container {
+    flex-basis: 100%;
+}
+
+.back-button-container {
+    display: flex;
+    justify-content: flex-start;
+    margin-bottom: 20px;
+    border-bottom: solid 1px grey;
+}

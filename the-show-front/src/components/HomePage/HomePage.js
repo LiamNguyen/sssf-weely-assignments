@@ -30,10 +30,10 @@ class HomePage extends Component {
 
   componentWillMount() {
     FetchHelper.fetchWeekOneImages()
-      .then(imageFile => {
+      .then(images => {
         this.setState({
-          images: imageFile.content,
-          categoryList: WeekOnePresenter.getCategories(imageFile.content)
+          images,
+          categoryList: WeekOnePresenter.getCategories(images)
         });
       });
   }

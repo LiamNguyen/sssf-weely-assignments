@@ -33,6 +33,16 @@
     .home .toolbox {
         margin-left: 20px;
     }
+
+    .App .add-image-page form {
+        width: 100%;
+        flex: auto;
+    }
+
+    .App .add-image-page .map-container {
+        width: 100%;
+        flex: auto;
+    }
 }
 
 @keyframes App-logo-spin {
@@ -73,4 +83,36 @@ body {
 /*Overriding bootstrap*/
 .modal-header button {
     outline: none
+}
+
+.form-control {
+    font-size: 18px;
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border: 2px solid #D62718;
+}
+
+input.form-control {
+    border: 0 solid grey;
+    border-bottom-width: 1px;
+    border-radius: 0;
+    box-shadow: none;
+    padding-left: 0;
+}
+
+input.form-control:focus {
+    border: 0 solid #D62718;
+    border-bottom-width: 2px;
+    box-shadow: none;
+}
+
+.has-error .form-control {
+    border: solid #D62718;
+    border-bottom-width: 2px;
+}
+
+.has-error .help-block {
+    color: #D62718
 }

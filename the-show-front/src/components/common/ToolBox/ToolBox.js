@@ -1,7 +1,6 @@
 import React from 'react';
 import { array, func } from 'prop-types';
 
-import './style.css';
 import CustomSelect from '../CustomSelect';
 
 const ToolBox = ({
