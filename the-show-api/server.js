@@ -5,9 +5,11 @@ const routes = require('./routes');
 
 const app = express();
 
+module.exports.rootDirectory = __dirname;
+
 database.connect();
-routes(app);
 appConfig(app);
+routes(app);
 
 app.listen(5000);
 console.log('Listening on port 5000...');

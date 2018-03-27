@@ -34,6 +34,8 @@ module.exports = app => {
         responseBody,
         res.statusCode
       );
+      res.header('Access-Control-Allow-Headers', '*');
+      res.header('Access-Control-Allow-Origin', '*');
       res.end = end;
       res.end(chunk, encoding);
     };

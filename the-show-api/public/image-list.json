@@ -1,0 +1,52 @@
+{
+  "content" : [
+    {
+      "id": 1,
+      "time": "2018-03-02 22:55",
+      "category": "Auto",
+      "title": "Mercedes CLA 2018",
+      "details": "Der neue CLA Coupé. Rock. Star.",
+      "coordinates": {
+        "lat": 60.2196781,
+        "lng": 24.8079786
+      },
+      "url": "https://www.rosier.de/fileadmin/user_upload/Mercedes-Benz_CLA_Coupe_Header_2050x955.jpg"
+    },
+    {
+      "id": 2,
+      "time": "2017-03-02 22:55",
+      "category": "Auto",
+      "title": "Mercedes-Benz E 300 Coupe AMG Line 2017",
+      "details":
+      "The sixth E-Class model in an eclectic line-up, and coincidentally, the sixth generation of E-Class Coupé; a lineage that started way back in 1968 with the iconic W114.",
+      "coordinates": {
+        "lat": 61.2196781,
+        "lng": 25.8079786
+      },
+      "url": "https://images.cdn.autocar.co.uk/sites/autocar.co.uk/files/styles/body-image/public/dsc_4722.jpg?itok=f4WeyFzw"
+    },
+    {
+      "id": 3,
+      "time": "2016-12-04 09:45",
+      "category": "Motorcycle",
+      "title": "Ducati Monster 797: the legendary Italian naked",
+      "details": "The Monster 797 is the entrance to the Ducati world and its values, style, sophistication and performance.",
+      "coordinates": {
+        "lat": 59.3196781,
+        "lng": 23.9079786
+      },
+      "url": "https://images.ctfassets.net/rjyti9b6lmvy/2TBLNiSBjGew8Oywyk4u42/a3c6501fe259a6882e695f0bdc018b13/Monster-797-Plus-My18-White-29-Slider-Gallery-1920x1080.jpg.jpg"
+    },
+    {
+      "id": 4,
+      "time": "2015-12-04 09:45",
+      "category": "Football",
+      "title": "Barca - Més que un club",
+      "coordinates": {
+        "lat": 41.3851,
+        "lng": 2.1734
+      },
+      "url": "https://i.pinimg.com/originals/c7/b3/87/c7b387aabd53a1108d6251d92b5d398a.jpg"
+    }
+  ]
+}

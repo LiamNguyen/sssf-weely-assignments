@@ -1,20 +1,44 @@
+const { INTERNAL_SERVER_ERROR, OK } = require('http-status-codes');
+const moment = require('moment');
+
+const EventLoggerRepository = require('../repositories/EventLoggerRepository');
 const RoutePathConstants = require('../constants/RoutePathConstants');
-const { INTERNAL_SERVER_ERROR } = require('http-status-codes');
 const ApiError = require('../constants/ApiError');
+const server = require('../server');
+const LogTypeConstants = require('../constants/LogTypeConstants');
+
+const { images } = RoutePathConstants;
 
 exports.POST = (req, res) => {
-  const imageFile = req.files.file;
+  const { files: { file: imageFile }, body: { filename } } = req;
+  const { rootDirectory } = server;
+  const currentDateTime = moment(new Date()).format();
+  const saveFilename = `${currentDateTime}_${filename}`;
+  const destinationFolder = `${rootDirectory}/${images}`;
 
   imageFile.mv(
-    `${__dirname}/${RoutePathConstants.images}/${req.body.filename}.jpg`,
-    err => {
-      if (err) {
+    `${destinationFolder}/${saveFilename}`,
+    error => {
+      if (error) {
+        EventLoggerRepository.create(
+          LogTypeConstants.error,
+          req,
+          error,
+          res.statusCode
+        );
         return res
           .status(INTERNAL_SERVER_ERROR)
           .send(ApiError.file_upload_failed);
       }
-      res.json({
-        file: `${RoutePathConstants.images}/${req.body.filename}.jpg`
+
+      EventLoggerRepository.create(
+        LogTypeConstants.info,
+        req,
+        `Uploaded file: ${saveFilename}, saved to ${destinationFolder}`,
+        res.statusCode
+      );
+      res.status(OK).json({
+        file: `${images}/${saveFilename}`
       });
     }
   );
