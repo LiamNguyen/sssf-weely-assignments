@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { object } from 'prop-types';
 import { Row } from 'react-bootstrap';
+import _ from 'lodash';
 
 import './style.css';
 import MUInput from '../common/MUInput';
@@ -9,6 +11,7 @@ import OkIcon from '../../assets/images/okIcon.png';
 import FetchHelper from '../../lib/FetchHelper';
 import BackButton from '../common/BackButton';
 import RoutePathConstants from '../../constants/RoutePathConstants';
+import GoogleMapCustom from '../common/GoogleMapCustom';
 
 const { home } = RoutePathConstants;
 
@@ -21,7 +24,12 @@ class AddImagePage extends Component {
       category: '',
       description: '',
       file: null,
-      previewImageSrc: null
+      previewImageSrc: null,
+      map: {
+        zoom: 15,
+        latitude: 60.220803,
+        longitude: 24.805207
+      }
     };
   }
 
@@ -74,7 +82,26 @@ class AddImagePage extends Component {
     this.props.history.push(`/${home}`);
   };
 
+  handleMapMounted = ref => {
+    this.map = ref;
+  };
+
+  handleMapMarkerChange = e => {
+    const mapConfig = _.cloneDeep(this.state.map);
+    _.set(mapConfig, 'latitude', e.latLng.lat());
+    _.set(mapConfig, 'longitude', e.latLng.lng());
+    this.setState({ map: mapConfig });
+  };
+
+  handleMapZoomChange = () => {
+    const mapConfig = _.cloneDeep(this.state.map);
+    _.set(mapConfig, 'zoom', this.map.getZoom());
+    this.setState({ map: mapConfig });
+  };
+
   render() {
+    const { zoom, latitude, longitude } = this.state.map;
+
     return (
       <div className="add-image-page">
         <div className="back-button-container">
@@ -119,11 +146,26 @@ class AddImagePage extends Component {
           </Row>
         </form>
         <div className="map-container">
-
+          <GoogleMapCustom
+            zoom={zoom}
+            latitude={latitude}
+            longitude={longitude}
+            onMounted={this.handleMapMounted}
+            onMarkerChange={this.handleMapMarkerChange}
+            onZoomChange={this.handleMapZoomChange}
+          />
         </div>
       </div>
     );
   }
 }
+
+AddImagePage.defaultProps = {
+  history: null
+};
+
+AddImagePage.propTypes = {
+  history: object
+};
 
 export default AddImagePage;
