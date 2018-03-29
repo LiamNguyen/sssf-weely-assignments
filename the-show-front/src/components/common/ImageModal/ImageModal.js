@@ -5,6 +5,7 @@ import { Modal } from 'react-bootstrap';
 import './style.css';
 import IconButton from '../IconButton';
 import OkIcon from '../../../assets/images/okIcon.png';
+import NotFoundImage from '../../../assets/images/404.jpg';
 
 class ImageModal extends Component {
   render() {
@@ -12,9 +13,8 @@ class ImageModal extends Component {
       show,
       onHide,
       title,
-      imageUrl
+      imageUrl = NotFoundImage
     } = this.props;
-
     return (
       <Modal
         show={show}

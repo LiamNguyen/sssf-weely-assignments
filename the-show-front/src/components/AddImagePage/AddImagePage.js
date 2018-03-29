@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { object } from 'prop-types';
 import { Row } from 'react-bootstrap';
 import _ from 'lodash';
+import { Throttle } from 'react-throttle';
 
 import './style.css';
 import MUInput from '../common/MUInput';
@@ -33,14 +34,20 @@ class AddImagePage extends Component {
     };
   }
 
+  setCoordinatesToForm(latitude, longitude) {
+    const mapConfig = _.cloneDeep(this.state.map);
+    _.set(mapConfig, 'latitude', latitude);
+    _.set(mapConfig, 'longitude', longitude);
+    this.setState({ map: mapConfig });
+  }
+
   handleFormSubmit = e => {
     e.preventDefault();
 
-    const data = new FormData();
-    data.append('file', this.state.file);
-    data.append('filename', this.state.file.name);
-
-    FetchHelper.uploadImageFile(data);
+    FetchHelper.uploadImageFile(this.state)
+      .then(() => {
+        this.props.history.push(`/${home}`);
+      });
   };
 
   handleTitleChange = e => {
@@ -53,6 +60,14 @@ class AddImagePage extends Component {
     const category = e.target.value;
 
     this.setState({ category });
+  };
+
+  handleLocationChange = e => {
+    const location = e.target.value;
+
+    FetchHelper.retrieveLocation(this.google, location).then(position => {
+      this.setCoordinatesToForm(position.lat(), position.lng());
+    }).catch(error => console.log(error));
   };
 
   handleDescriptionChange = e => {
@@ -84,13 +99,11 @@ class AddImagePage extends Component {
 
   handleMapMounted = ref => {
     this.map = ref;
+    this.google = window.google;
   };
 
   handleMapMarkerChange = e => {
-    const mapConfig = _.cloneDeep(this.state.map);
-    _.set(mapConfig, 'latitude', e.latLng.lat());
-    _.set(mapConfig, 'longitude', e.latLng.lng());
-    this.setState({ map: mapConfig });
+    this.setCoordinatesToForm(e.latLng.lat(), e.latLng.lng());
   };
 
   handleMapZoomChange = () => {
@@ -121,6 +134,13 @@ class AddImagePage extends Component {
             placeholder={Locale.placeholders.category}
             onChange={this.handleCategoryChange}
           />
+          <Throttle time="1000" handler="onChange">
+            <MUInput
+              type="text"
+              placeholder={Locale.placeholders.location}
+              onChange={this.handleLocationChange}
+            />
+          </Throttle>
           <MUInput
             value={this.state.description}
             type="text"

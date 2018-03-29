@@ -12,8 +12,10 @@ import WeekOnePresenter from '../../presenters/WeekOnePresenter';
 import ToolBox from '../common/ToolBox';
 import FloatingButton from '../common/FloatingButton';
 import RoutePathConstants from '../../constants/RoutePathConstants';
+import ExternalUrl from '../../constants/ExternalUrl';
 
 const { addImage } = RoutePathConstants;
+const { apiBaseUrl } = ExternalUrl;
 
 class HomePage extends Component {
   constructor(props) {
@@ -41,7 +43,7 @@ class HomePage extends Component {
   handleViewImage = id => {
     const selectedImage = this.state.images.find(image => image.id === id);
     this.setState({
-      modalProps: _.pick(selectedImage, ['title', 'url']),
+      modalProps: _.pick(selectedImage, ['title', 'url', 'imageName']),
       shouldModalShow: true
     });
   };
@@ -69,7 +71,7 @@ class HomePage extends Component {
     const {
       images,
       filteredImages,
-      modalProps: {title = '', url: imageUrl = ''}
+      modalProps: { title = '', url: imageUrl, imageName }
     } = this.state;
 
     const imagesToDisplay = _.isEmpty(filteredImages) ? images : filteredImages;
@@ -85,7 +87,8 @@ class HomePage extends Component {
             (<ImageTile
               key={image.id}
               id={image.id}
-              imageUrl={image.url}
+              imageUrl={image.url ||
+                `${apiBaseUrl}/public/images/${image.imageName}`}
               title={image.title}
               detail={image.details}
               onClick={this.handleViewImage}
@@ -96,7 +99,7 @@ class HomePage extends Component {
           onHide={this.handleHideModal}
           show={this.state.shouldModalShow}
           title={title}
-          imageUrl={imageUrl}
+          imageUrl={imageUrl || `${apiBaseUrl}/public/images/${imageName}`}
         />
         <Draggable
           axis="x"

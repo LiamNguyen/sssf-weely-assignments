@@ -1,21 +1,21 @@
 const Images = require('../database/models/images');
 
 module.exports.create = (
-  id,
   title,
   category,
   details = '',
   coordinates,
-  imageName
+  imageName,
+  callback
 ) => {
+  console.log(details);
   Images.create({
-    id,
     title,
     category,
     details,
     coordinates,
     imageName
-  });
+  }, callback);
 };
 
 module.exports.findAll = callback => {

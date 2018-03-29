@@ -14,7 +14,7 @@ const imagesSchema = mongoose.Schema({
     type: String,
     required: true
   },
-  detail: {
+  details: {
     type: String
   },
   coordinates: {

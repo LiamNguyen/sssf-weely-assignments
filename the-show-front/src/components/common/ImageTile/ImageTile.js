@@ -1,5 +1,5 @@
 import React from 'react';
-import { func, string, number } from 'prop-types';
+import { func, string } from 'prop-types';
 
 import './style.css';
 import NotFoundImage from '../../../assets/images/404.jpg';
@@ -46,7 +46,7 @@ ImageTile.defaultProps = {
 };
 
 ImageTile.propTypes = {
-  id: number.isRequired,
+  id: string.isRequired,
   imageUrl: string.isRequired,
   title: string.isRequired,
   detail: string,

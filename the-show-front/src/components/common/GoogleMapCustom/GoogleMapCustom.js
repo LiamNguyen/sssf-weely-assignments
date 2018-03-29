@@ -30,7 +30,7 @@ const GoogleMapCustom = compose(
   <GoogleMap
     ref={onMounted}
     defaultZoom={zoom}
-    defaultCenter={{
+    center={{
       lat: latitude,
       lng: longitude
     }}
